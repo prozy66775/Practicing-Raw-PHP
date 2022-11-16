@@ -9,6 +9,18 @@ if (isset($_POST['login'])) {
     $userName = $request['userName'];
     $pass = $request['pass'];
 
+
+// function mistaksAlert($alert){
+//      if (empty($email)) {
+//         $alert =  $alert;
+//        global $mistaks;
+//         $mistaks['email'] = $alert;
+//     }
+// }
+
+// mistaksAlert("belal");
+
+
     //for email alert
 
     if (empty($email)) {
@@ -37,5 +49,6 @@ if (isset($_POST['login'])) {
         header("Location: ../class 7.php");
     } else {
         echo "Welcome To Your Account .....👍";
+        // print_r($mistaks);
     }
 } 

@@ -142,3 +142,6 @@ function eligableforloan($tomalEarn, $totalCost, $perMonth)
 eligableforloan(12000, 10000, getLoanMoney(5000, 10));
 echo "<br>";
 eligableforloan(10500, 10000, getLoanMoney(6000, 10));
+
+$g = 23;
+echo $g%2 ==0 ? 'even' : 'odd';
