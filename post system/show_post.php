@@ -17,10 +17,10 @@ $fetch = mysqli_fetch_assoc($resu);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article</title>
+    <title>Show Post</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="icon" href="./src/post-card.png">
 
     <style>
 
@@ -31,22 +31,10 @@ $fetch = mysqli_fetch_assoc($resu);
 
     <!-- ----------for nav--------- -->
 
-    <nav class="navbar navbar-expand-lg bg-light col-6 mx-auto rounded">
-        <div class="container ">
-            <a class="navbar-brand" href="#">Post Article</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./index.php">Add Post </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./all_post.php">All Post </a>
-                    </li>
 
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!---new nav added on slice metthod---1>
+
+    <?= include 'nav.php' ?> 
 
     <!-- -------------table------ -->
 

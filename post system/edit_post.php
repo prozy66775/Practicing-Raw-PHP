@@ -1,7 +1,15 @@
 <?php
 
 session_start();
+$id = $_GET['id'];
+include './include/env.php';
+$query = "SELECT * FROM all_post WHERE id = $id";
 
+$res = mysqli_query($conn, $query);
+
+$fet = mysqli_fetch_assoc($res); // pich one row data
+
+// var_dump($fet);
 ?>
 
 <!DOCTYPE html>
@@ -11,10 +19,10 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article</title>
+    <title>Edit Post</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="icon" href="./src/post-card.png">
 
     <style>
 
@@ -24,42 +32,10 @@ session_start();
 <body>
 
     <!-- ----------for nav--------- -->
+    <!---new nav added on slice metthod---1>
 
+    <?= include 'nav.php' ?> 
 
-    <nav class="navbar navbar-expand-lg bg-light col-6 mx-auto rounded">
-        <div class="container ">
-            <a class="navbar-brand" href="#">Post Article</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./index.php">Add Post </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="all_post.php">All Post </a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-    <!-- -----------toast massage for success----------- -->
-    <?php
-    if (isset($_SESSION['success'])) {
-    ?>
-        <div class="toast show" role="alert" style="position:absolute;bottom:20px;right:20px;" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <strong class="me-auto">Article Post</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                <?= $_SESSION['success'] ?>
-            </div>
-        </div>
-    <?php
-    }
-    ?>
 
     <!-- -------------form------ -->
 
@@ -67,12 +43,13 @@ session_start();
 
         <div class="card-body ">
             <div class="text-center">
-                <h4>Add Post</h4>
+                <h4>Edit Post</h4>
             </div>
-            <form class="col-11 mx-auto" action="controller/article.php" method="post">
+            <form class="col-11 mx-auto" action="controller/postEdit.php" method="post">
+                <input type="hidden" name="id" value="<?= $fet['id'] ?>">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Post Title</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="title" value="<?= isset($_SESSION['oldValue']['title']) ?   $_SESSION['oldValue']['title'] : ''  ?>" />
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="title" value="<?= $fet['title'] ?>" />
 
                     <!-- ---------for showing error------- -->
 
@@ -92,7 +69,7 @@ session_start();
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Post Details</label>
-                    <textarea name="details" class="form-control"><?= isset($_SESSION['oldValue']['details']) ?   $_SESSION['oldValue']['details'] : ''  ?></textarea>
+                    <textarea name="details" class="form-control"><?= $fet['details'] ?></textarea>
 
                     <!-- ---------for showing error------- -->
 
@@ -111,7 +88,7 @@ session_start();
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Author</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" name="author" value="<?= isset($_SESSION['oldValue']['author']) ?   $_SESSION['oldValue']['author'] : ''  ?>">
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="author" value="<?= $fet['author'] ?>">
 
                     <!-- ---------for showing error------- -->
 
@@ -129,7 +106,7 @@ session_start();
                     ?>
 
                 </div>
-                <button type="submit" value="Post Submitted" name="submit" class="btn btn-primary w-100">Submit Post</button>
+                <button type="submit" value="Updating Post" name="update" class="btn btn-primary w-100">Update Post</button>
             </form>
 
         </div>
